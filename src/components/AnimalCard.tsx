@@ -7,9 +7,10 @@ interface AnimalCardProps {
   animal: Animal;
   isSelected?: boolean;
   onToggleCompare?: (animal: Animal) => void;
+  onViewDetails?: (animal: Animal) => void;
 }
 
-export const AnimalCard: React.FC<AnimalCardProps> = ({ animal, isSelected = false, onToggleCompare }) => {
+export const AnimalCard: React.FC<AnimalCardProps> = ({ animal, isSelected = false, onToggleCompare, onViewDetails }) => {
   return (
     <motion.div 
       layout
@@ -23,6 +24,7 @@ export const AnimalCard: React.FC<AnimalCardProps> = ({ animal, isSelected = fal
           src={animal.image} 
           alt={animal.name} 
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          referrerPolicy="no-referrer"
         />
         <div className="absolute top-4 left-4 flex gap-2">
           <span className="bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">
@@ -106,10 +108,16 @@ export const AnimalCard: React.FC<AnimalCardProps> = ({ animal, isSelected = fal
         </div>
 
         <div className="flex gap-2">
-          <button className="flex-1 btn-primary py-2 text-sm flex items-center justify-center gap-2">
+          <button 
+            onClick={() => onViewDetails && onViewDetails(animal)}
+            className="flex-1 btn-primary py-2 text-sm flex items-center justify-center gap-2"
+          >
             Ver Detalhes
           </button>
-          <button className="p-2 border border-zinc-200 rounded-lg hover:bg-zinc-50 transition-colors">
+          <button 
+            onClick={() => onViewDetails && onViewDetails(animal)}
+            className="p-2 border border-zinc-200 rounded-lg hover:bg-zinc-50 transition-colors"
+          >
             <Info className="w-5 h-5 text-zinc-500" />
           </button>
         </div>

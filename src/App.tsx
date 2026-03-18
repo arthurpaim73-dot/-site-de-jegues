@@ -5,6 +5,7 @@ import { Filters } from './components/Filters';
 import { AnimalCard } from './components/AnimalCard';
 import { FeaturedSection } from './components/FeaturedSection';
 import { ComparisonModal } from './components/ComparisonModal';
+import { AnimalDetailsModal } from './components/AnimalDetailsModal';
 import { INVENTORY } from './constants';
 import { FilterState, Animal } from './types';
 import { motion, AnimatePresence } from 'motion/react';
@@ -20,6 +21,7 @@ export default function App() {
 
   const [selectedForComparison, setSelectedForComparison] = useState<Animal[]>([]);
   const [isComparisonModalOpen, setIsComparisonModalOpen] = useState(false);
+  const [selectedAnimalForDetails, setSelectedAnimalForDetails] = useState<Animal | null>(null);
 
   const toggleComparison = (animal: Animal) => {
     setSelectedForComparison(prev => {
@@ -77,6 +79,7 @@ export default function App() {
                       animal={animal} 
                       isSelected={selectedForComparison.some(a => a.id === animal.id)}
                       onToggleCompare={toggleComparison}
+                      onViewDetails={(animal) => setSelectedAnimalForDetails(animal)}
                     />
                   ))}
                 </AnimatePresence>
@@ -225,6 +228,12 @@ export default function App() {
         isOpen={isComparisonModalOpen} 
         onClose={() => setIsComparisonModalOpen(false)} 
         animals={selectedForComparison} 
+      />
+
+      <AnimalDetailsModal
+        isOpen={!!selectedAnimalForDetails}
+        onClose={() => setSelectedAnimalForDetails(null)}
+        animal={selectedAnimalForDetails}
       />
     </div>
   );
