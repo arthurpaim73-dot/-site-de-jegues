@@ -1,0 +1,2 @@
+// Esta pasta é usada para arquivos públicos estáticos, como imagens.
+// Você pode fazer o upload da foto do burro aqui!
