@@ -23,7 +23,6 @@ export const AnimalCard: React.FC<AnimalCardProps> = ({ animal, isSelected = fal
           src={animal.image} 
           alt={animal.name} 
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          referrerPolicy="no-referrer"
         />
         <div className="absolute top-4 left-4 flex gap-2">
           <span className="bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">
